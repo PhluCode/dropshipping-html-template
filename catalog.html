@@ -1,11 +1,11 @@
 <!doctype html>
 <html class="no-js" lang="en">
 
-<!-- cart.html  03:24:28 GMT -->
+<!-- catalog.html  -->
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Drophut - Single Product eCommerce Template</title>
+    <title>Drophut - Product Catalog eCommerce Template</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Favicon -->
@@ -21,6 +21,241 @@
     <!-- Main Style CSS -->
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/custom.css">
+
+    <style>
+        .catalog_section {
+            padding: 60px 0;
+        }
+
+        .catalog_header {
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .catalog_header h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .catalog_filters {
+            background: #f9f9f9;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 5px;
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .filter_group {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .filter_group label {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .filter_group select,
+        .search_input {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .product_grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .product_item {
+            background: white;
+            border: 1px solid #f0f0f0;
+            border-radius: 6px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .product_item:hover {
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transform: translateY(-3px);
+        }
+
+        .product_image {
+            position: relative;
+            overflow: hidden;
+            height: 250px;
+            background: #f9f9f9;
+        }
+
+        .product_image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .product_item:hover .product_image img {
+            transform: scale(1.05);
+        }
+
+        .product_badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #ff4444;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .product_content {
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .product_title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+            line-height: 1.3;
+            min-height: 40px;
+        }
+
+        .product_rating {
+            display: flex;
+            gap: 3px;
+            margin-bottom: 8px;
+        }
+
+        .product_rating .fa-star {
+            color: #ffc107;
+            font-size: 12px;
+        }
+
+        .product_price {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            margin-bottom: 12px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .price_current {
+            color: #ff4444;
+            font-size: 18px;
+        }
+
+        .price_original {
+            color: #999;
+            text-decoration: line-through;
+            font-size: 14px;
+        }
+
+        .product_actions {
+            display: flex;
+            gap: 8px;
+            margin-top: auto;
+        }
+
+        .btn_add_cart,
+        .btn_wishlist {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+
+        .btn_add_cart {
+            background: #ff4444;
+            color: white;
+        }
+
+        .btn_add_cart:hover {
+            background: #cc3333;
+        }
+
+        .btn_wishlist {
+            background: #f0f0f0;
+            color: #333;
+        }
+
+        .btn_wishlist:hover {
+            background: #ff4444;
+            color: white;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+            margin-top: 40px;
+        }
+
+        .pagination a,
+        .pagination span {
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            text-decoration: none;
+            color: #333;
+            transition: all 0.3s ease;
+        }
+
+        .pagination a:hover,
+        .pagination .active {
+            background: #ff4444;
+            color: white;
+            border-color: #ff4444;
+        }
+
+        @media (max-width: 768px) {
+            .product_grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                gap: 15px;
+            }
+
+            .catalog_filters {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .filter_group {
+                width: 100%;
+            }
+
+            .filter_group select,
+            .search_input {
+                width: 100%;
+            }
+        }
+    </style>
 
 </head>
 
@@ -50,14 +285,6 @@
                                <li><a href="my-account.html"> My Account </a></li> 
                                <li><a href="checkout.html"> Checkout </a></li> 
                             </ul>
-                        </div> 
-                        <div class="search_container">
-                           <form action="#">
-                                <div class="search_box">
-                                    <input placeholder="Search product..." type="text">
-                                    <button type="submit">Search</button> 
-                                </div>
-                            </form>
                         </div> 
                         
                         <div class="middel_right_info">
@@ -124,7 +351,7 @@
                                     <a href="#">Home</a>
                                 </li>
                                 <li class="menu-item-has-children">
-                                    <a href="product-details.html">product</a>
+                                    <a href="catalog.html">product</a>
                                 </li>
                                 <li class="menu-item-has-children">
                                     <a href="#">pages </a>
@@ -282,7 +509,7 @@
                                 <nav>  
                                     <ul>
                                         <li><a href="index-2.html">home</a></li>
-                                        <li><a href="product-details.html">Product</a></li>
+                                        <li><a href="catalog.html">Product</a></li>
                                         
                                         <li><a class="active" href="#">pages <i class="fa fa-angle-down"></i></a>
                                             <ul class="sub_menu pages">
@@ -326,7 +553,7 @@
                     <div class="breadcrumb_content">
                         <ul>
                             <li><a href="index-2.html">home</a></li>
-                            <li>Cart</li>
+                            <li>Product Catalog</li>
                         </ul>
                     </div>
                 </div>
@@ -334,99 +561,130 @@
         </div>         
     </div>
     <!--breadcrumbs area end-->
+    
+    <!--catalog start-->
+    <div class="catalog_section">
+        <div class="container">
+            <!-- Catalog Header -->
+            <div class="catalog_header">
+                <h1>Our Products</h1>
+                <p>Discover our amazing collection of quality products</p>
+            </div>
 
-    <!--shopping cart area start -->
-    <div class="shopping_cart_area mt-60">
-        <div class="container">  
-            <form action="#"> 
-                <div class="row">
-                    <div class="col-12">
-                        <div class="table_desc">
-                            <div class="cart_page table-responsive">
-                                <table>
-                            <thead>
-                                <tr>
-                                    <th class="product_thumb">Image</th>
-                                    <th class="product_name">Product</th>
-                                    <th class="product-price">Price</th>
-                                    <th class="product_quantity">Quantity</th>
-                                    <th class="product_total">Total</th>
-                                    <th class="product_remove">Remove</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td class="product_thumb"><a href="#"><img src="assets/img/s-product/product.jpg" alt=""></a></td>
-                                    <td class="product_name"><a href="#">Handbag fringilla</a></td>
-                                    <td class="product-price">$65.00</td>
-                                    <td class="product_quantity"><label>Quantity</label> <input min="1" max="100" value="1" type="number"></td>
-                                    <td class="product_total">$130.00</td>
-									<td class="product_remove"><a href="#"><i class="ion-android-close"></i></a></td>
-                                </tr>
-
-                                <tr>
-                                    <td class="product_thumb"><a href="#"><img src="assets/img/s-product/product2.jpg" alt=""></a></td>
-                                    <td class="product_name"><a href="#">Handbags justo</a></td>
-                                    <td class="product-price">$90.00</td>
-                                    <td class="product_quantity"><label>Quantity</label> <input min="1" max="100" value="1" type="number"></td>
-                                    <td class="product_total">$180.00</td>
-									<td class="product_remove"><a href="#"><i class="ion-android-close"></i></a></td>
-                                </tr>
-
-                            </tbody>
-                        </table>   
-                            </div>  
-                            <div class="cart_submit">
-                                <button type="submit">update cart</button>
-                            </div>      
-                        </div>
-                    </div>
+            <!-- Filters -->
+            <div class="catalog_filters">
+                <div class="filter_group">
+                    <label for="price-sort">Sort by:</label>
+                    <select id="price-sort">
+                        <option value="">Default</option>
+                        <option value="price-low">Price: Low to High</option>
+                        <option value="price-high">Price: High to Low</option>
+                        <option value="newest">Newest</option>
+                        <option value="popular">Most Popular</option>
+                    </select>
                 </div>
-                <!--coupon code area start-->
-                <div class="coupon_area">
-                    <div class="row">
-                        <div class="col-lg-6 col-md-6">
-                            <div class="coupon_code left">
-                                <h3>Coupon</h3>
-                                <div class="coupon_inner">   
-                                    <p>Enter your coupon code if you have one.</p>                                
-                                    <input placeholder="Coupon code" type="text">
-                                    <button type="submit">Apply coupon</button>
-                                </div>    
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6">
-                            <div class="coupon_code right">
-                                <h3>Cart Totals</h3>
-                                <div class="coupon_inner">
-                                <div class="cart_subtotal">
-                                    <p>Subtotal</p>
-                                    <p class="cart_amount">$215.00</p>
-                                </div>
-                                <div class="cart_subtotal ">
-                                    <p>Shipping</p>
-                                    <p class="cart_amount"><span>Flat Rate:</span> $255.00</p>
-                                </div>
-                                <a href="#">Calculate shipping</a>
-
-                                <div class="cart_subtotal">
-                                    <p>Total</p>
-                                    <p class="cart_amount">$215.00</p>
-                                </div>
-                                <div class="checkout_btn">
-                                    <a href="#">Proceed to Checkout</a>
-                                </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="filter_group">
+                    <label for="category-filter">Category:</label>
+                    <select id="category-filter">
+                        <option value="">All Categories</option>
+                        <option value="furniture">Furniture</option>
+                        <option value="clothing">Clothing</option>
+                        <option value="electronics">Electronics</option>
+                        <option value="accessories">Accessories</option>
+                    </select>
                 </div>
-                <!--coupon code area end-->
-            </form> 
-        </div>     
+                <div class="filter_group" style="flex: 1;">
+                    <input type="text" class="search_input" placeholder="Search products...">
+                </div>
+            </div>
+
+            <div class="product_grid">
     </div>
-    <!--shopping cart area end -->
-        
+
+<script>
+    /**
+     * Fetches and renders products into the .product_grid
+     */
+    async function initProductGrid() {
+        const gridContainer = document.querySelector('.product_grid');
+        const dataSource = 'json/products.json'; // Update this to your actual API endpoint or file path
+
+        try {
+            const response = await fetch(dataSource);
+            
+            if (!response.ok) {
+                throw new Error(`System failed to fetch: ${response.status}`);
+            }
+
+            const products = await response.json();
+
+            // Build the HTML string for all products
+            const productCards = products.map(product => {
+                // Logic for star ratings (5 total)
+                let starsHTML = '';
+                for (let i = 1; i <= 5; i++) {
+                    starsHTML += i <= product.rating 
+                        ? '<i class="fa fa-star"></i>' 
+                        : '<i class="fa fa-star-o"></i>'; // Empty star if rating is lower
+                }
+
+                return `
+                    <div class="product_item">
+                        <div class="product_image">
+                            <img src="${product.image}" alt="${product.image_alt}">
+                            ${product.badge ? `<span class="product_badge">${product.badge}</span>` : ''}
+                        </div>
+                        <div class="product_content">
+                            <h3 class="product_title">${product.title}</h3>
+                            <div class="product_rating">
+                                ${starsHTML}
+                            </div>
+                            <div class="product_price">
+                                <span class="price_current">$${product.current_price.toFixed(2)}</span>
+                                <span class="price_original">$${product.original_price.toFixed(2)}</span>
+                            </div>
+                            <div class="product_actions">
+                                <a href="product-details.html?id=${product.id}" class="btn_add_cart">
+                                    <i class="fa fa-shopping-cart"></i> Add
+                                </a>
+                                <a href="wishlist.html" class="btn_wishlist">
+                                    <i class="fa fa-heart"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            // Inject into the DOM once to minimize reflows
+            gridContainer.innerHTML = productCards;
+
+        } catch (error) {
+            console.error("Full Stack Dev Error:", error);
+            gridContainer.innerHTML = `
+                <div class="error_container" style="grid-column: 1/-1; text-align: center; padding: 2rem;">
+                    <p>Oops! We're having trouble loading the shop catalog right now.</p>
+                </div>
+            `;
+        }
+    }
+
+    // Fire the function when the script loads
+    initProductGrid();
+</script>
+
+            <!-- Pagination -->
+            <div class="pagination">
+                <span class="active">1</span>
+                <a href="#page2">2</a>
+                <a href="#page3">3</a>
+                <a href="#page4">4</a>
+                <a href="#next">Next</a>
+            </div>
+        </div>
+    </div>
+    <!--catalog end-->
+
 
     <!--footer area start-->
     <footer class="footer_widgets">
@@ -509,7 +767,7 @@
                 <div class="row align-items-center">
                     <div class="col-lg-6 col-md-6">
                         <div class="copyright_area">
-                            <p> <a href="templateshub.net">Templates Hub</a></p>
+                            <p> <a href="#">eComhut</a>  All Right Reserved.</p>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6">
@@ -522,11 +780,9 @@
         </div>   
     </footer>
     <!--footer area end-->
-
-
+   
 <!-- JS
 ============================================ -->
-
 
 <!-- Plugins JS -->
 <script src="assets/js/plugins.js"></script>
@@ -538,5 +794,6 @@
 
 </body>
 
-<!-- cart.html  03:24:28 GMT -->
+
+<!-- catalog.html -->
 </html>

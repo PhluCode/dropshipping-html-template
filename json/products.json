@@ -1,0 +1,202 @@
+[
+    {
+        "id": 1,
+        "image": "assets/img/product/details-1.jpg",
+        "image_alt": "Fancy Chair",
+        "badge": "-30%",
+        "title": "Fancy Chair for astron floor",
+        "rating": 5,
+        "current_price": 70.0,
+        "original_price": 100.0
+    },
+    {
+        "id": 2,
+        "image": "assets/img/product/details-2.jpg",
+        "image_alt": "Modern Sofa",
+        "badge": "New",
+        "title": "Minimalist Velvet Sofa",
+        "rating": 4,
+        "current_price": 450.0,
+        "original_price": 600.0
+    },
+    {
+        "id": 3,
+        "image": "assets/img/product/details-3.jpg",
+        "image_alt": "Oak Table",
+        "badge": "-10%",
+        "title": "Handcrafted Oak Dining Table",
+        "rating": 5,
+        "current_price": 890.0,
+        "original_price": 990.0
+    },
+    {
+        "id": 4,
+        "image": "assets/img/product/details-4.jpg",
+        "image_alt": "Table Lamp",
+        "badge": "Hot",
+        "title": "Golden Arc Table Lamp",
+        "rating": 4,
+        "current_price": 45.0,
+        "original_price": 55.0
+    },
+    {
+        "id": 5,
+        "image": "assets/img/product/details-5.jpg",
+        "image_alt": "Wall Clock",
+        "badge": "-15%",
+        "title": "Vintage Silent Wall Clock",
+        "rating": 3,
+        "current_price": 25.5,
+        "original_price": 30.0
+    },
+    {
+        "id": 6,
+        "image": "assets/img/product/details-6.jpg",
+        "image_alt": "Coffee Table",
+        "badge": "Sale",
+        "title": "Marble Top Coffee Table",
+        "rating": 5,
+        "current_price": 210.0,
+        "original_price": 300.0
+    },
+    {
+        "id": 7,
+        "image": "assets/img/product/details-7.jpg",
+        "image_alt": "Bookshelf",
+        "badge": "-20%",
+        "title": "Industrial 5-Tier Bookshelf",
+        "rating": 4,
+        "current_price": 120.0,
+        "original_price": 150.0
+    },
+    {
+        "id": 8,
+        "image": "assets/img/product/details-8.jpg",
+        "image_alt": "Office Chair",
+        "badge": "New",
+        "title": "Ergonomic Mesh Office Chair",
+        "rating": 5,
+        "current_price": 185.0,
+        "original_price": 220.0
+    },
+    {
+        "id": 9,
+        "image": "assets/img/product/details-9.jpg",
+        "image_alt": "Ceramic Vase",
+        "badge": "-50%",
+        "title": "Blue Porcelain Floral Vase",
+        "rating": 4,
+        "current_price": 15.0,
+        "original_price": 30.0
+    },
+    {
+        "id": 10,
+        "image": "assets/img/product/details-10.jpg",
+        "image_alt": "Area Rug",
+        "badge": "Free Shipping",
+        "title": "Bohemian Style Area Rug",
+        "rating": 4,
+        "current_price": 75.0,
+        "original_price": 95.0
+    },
+    {
+        "id": 11,
+        "image": "assets/img/product/details-11.jpg",
+        "image_alt": "Mirror",
+        "badge": "New",
+        "title": "Large Circular Wall Mirror",
+        "rating": 5,
+        "current_price": 110.0,
+        "original_price": 130.0
+    },
+    {
+        "id": 12,
+        "image": "assets/img/product/details-12.jpg",
+        "image_alt": "Ottoman",
+        "badge": "-5%",
+        "title": "Round Leather Footstool",
+        "rating": 3,
+        "current_price": 47.5,
+        "original_price": 50.0
+    },
+    {
+        "id": 13,
+        "image": "assets/img/product/details-13.jpg",
+        "image_alt": "Pendant Light",
+        "badge": "Popular",
+        "title": "Industrial Metal Pendant Light",
+        "rating": 4,
+        "current_price": 62.0,
+        "original_price": 80.0
+    },
+    {
+        "id": 14,
+        "image": "assets/img/product/details-14.jpg",
+        "image_alt": "Nightstand",
+        "badge": "-25%",
+        "title": "Modern 2-Drawer Nightstand",
+        "rating": 5,
+        "current_price": 82.5,
+        "original_price": 110.0
+    },
+    {
+        "id": 15,
+        "image": "assets/img/product/details-15.jpg",
+        "image_alt": "Plant Pot",
+        "badge": "Eco",
+        "title": "Concrete Minimalist Plant Pot",
+        "rating": 4,
+        "current_price": 18.0,
+        "original_price": 22.0
+    },
+    {
+        "id": 16,
+        "image": "assets/img/product/details-16.jpg",
+        "image_alt": "Throw Blanket",
+        "badge": "-40%",
+        "title": "Soft Faux Fur Throw Blanket",
+        "rating": 5,
+        "current_price": 24.0,
+        "original_price": 40.0
+    },
+    {
+        "id": 17,
+        "image": "assets/img/product/details-17.jpg",
+        "image_alt": "Desk",
+        "badge": "Best Seller",
+        "title": "L-Shaped Corner Gaming Desk",
+        "rating": 4,
+        "current_price": 155.0,
+        "original_price": 190.0
+    },
+    {
+        "id": 18,
+        "image": "assets/img/product/details-18.jpg",
+        "image_alt": "Candle Set",
+        "badge": "-10%",
+        "title": "Scented Soy Wax Candle Set",
+        "rating": 4,
+        "current_price": 27.0,
+        "original_price": 30.0
+    },
+    {
+        "id": 19,
+        "image": "assets/img/product/details-19.jpg",
+        "image_alt": "Armchair",
+        "badge": "Sale",
+        "title": "Yellow Nordic Accent Armchair",
+        "rating": 5,
+        "current_price": 195.0,
+        "original_price": 250.0
+    },
+    {
+        "id": 20,
+        "image": "assets/img/product/details-20.jpg",
+        "image_alt": "Sideboard",
+        "badge": "-15%",
+        "title": "Mid-Century Modern Sideboard",
+        "rating": 5,
+        "current_price": 340.0,
+        "original_price": 400.0
+    }
+]
