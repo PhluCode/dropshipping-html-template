@@ -599,79 +599,8 @@
             </div>
 
             <div class="product_grid">
-    </div>
-
-<script>
-    /**
-     * Fetches and renders products into the .product_grid
-     */
-    async function initProductGrid() {
-        const gridContainer = document.querySelector('.product_grid');
-        const dataSource = 'json/products.json'; // Update this to your actual API endpoint or file path
-
-        try {
-            const response = await fetch(dataSource);
-            
-            if (!response.ok) {
-                throw new Error(`System failed to fetch: ${response.status}`);
-            }
-
-            const products = await response.json();
-
-            // Build the HTML string for all products
-            const productCards = products.map(product => {
-                // Logic for star ratings (5 total)
-                let starsHTML = '';
-                for (let i = 1; i <= 5; i++) {
-                    starsHTML += i <= product.rating 
-                        ? '<i class="fa fa-star"></i>' 
-                        : '<i class="fa fa-star-o"></i>'; // Empty star if rating is lower
-                }
-
-                return `
-                    <div class="product_item">
-                        <div class="product_image">
-                            <img src="${product.image}" alt="${product.image_alt}">
-                            ${product.badge ? `<span class="product_badge">${product.badge}</span>` : ''}
-                        </div>
-                        <div class="product_content">
-                            <h3 class="product_title">${product.title}</h3>
-                            <div class="product_rating">
-                                ${starsHTML}
-                            </div>
-                            <div class="product_price">
-                                <span class="price_current">$${product.current_price.toFixed(2)}</span>
-                                <span class="price_original">$${product.original_price.toFixed(2)}</span>
-                            </div>
-                            <div class="product_actions">
-                                <a href="product-details.html?id=${product.id}" class="btn_add_cart">
-                                    <i class="fa fa-shopping-cart"></i> Add
-                                </a>
-                                <a href="wishlist.html" class="btn_wishlist">
-                                    <i class="fa fa-heart"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                `;
-            }).join('');
-
-            // Inject into the DOM once to minimize reflows
-            gridContainer.innerHTML = productCards;
-
-        } catch (error) {
-            console.error("Full Stack Dev Error:", error);
-            gridContainer.innerHTML = `
-                <div class="error_container" style="grid-column: 1/-1; text-align: center; padding: 2rem;">
-                    <p>Oops! We're having trouble loading the shop catalog right now.</p>
-                </div>
-            `;
-        }
-    }
-
-    // Fire the function when the script loads
-    initProductGrid();
-</script>
+                
+            </div>
 
             <!-- Pagination -->
             <div class="pagination">
@@ -793,6 +722,176 @@
 
 
 </body>
+
+<script>
+    /**
+     * ดึงข้อมูลสินค้าจาก API หรือ JSON File
+     */
+
+    var allProducts = [];
+
+    async function loadProducts() {
+        
+        const dataSource = 'json/products.json';
+
+        try {
+            const response = await fetch(dataSource);
+            if (!response.ok) {
+                throw new Error(`System failed to fetch: ${response.status}`);
+            }
+            allProducts = await response.json();
+            
+            // ส่งข้อมูลที่ได้ไปให้ฟังก์ชัน Render
+            renderProducts(allProducts);
+            
+        } catch (error) {
+            console.error("Full Stack Dev Error:", error);
+            displayErrorMessage();
+        }
+    }
+
+    /**
+     * รับข้อมูล Array ของสินค้าแล้วสร้าง HTML เพื่อแสดงผล
+     */
+    function renderProducts(products) {
+        const gridContainer = document.querySelector('.product_grid');
+        
+        if (!gridContainer) return;
+
+        const productCards = products.map(product => {
+            // สร้าง Star Rating HTML
+            let starsHTML = '';
+            for (let i = 1; i <= 5; i++) {
+                starsHTML += i <= product.rating 
+                    ? '<i class="fa fa-star"></i>' 
+                    : '<i class="fa fa-star-o"></i>';
+            }
+
+            return `
+                <div class="product_item">
+                    <div class="product_image">
+                        <img src="${product.image}" alt="${product.image_alt}">
+                        ${product.badge ? `<span class="product_badge">${product.badge}</span>` : ''}
+                    </div>
+                    <div class="product_content">
+                        <h3 class="product_title">${product.title}</h3>
+                        <div class="product_rating">
+                            ${starsHTML}
+                        </div>
+                        <div class="product_price">
+                            <span class="price_current">$${product.current_price.toFixed(2)}</span>
+                            <span class="price_original">$${product.original_price.toFixed(2)}</span>
+                        </div>
+                        <div class="product_actions">
+                            <a href="product-details.html?id=${product.id}" class="btn_add_cart">
+                                <i class="fa fa-shopping-cart"></i> Add
+                            </a>
+                            <a href="wishlist.html" class="btn_wishlist">
+                                <i class="fa fa-heart"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }).join('');
+
+        gridContainer.innerHTML = productCards;
+    }
+
+    /**
+     * แสดงข้อความเมื่อเกิด Error
+     */
+    function displayErrorMessage() {
+        const gridContainer = document.querySelector('.product_grid');
+        if (gridContainer) {
+            gridContainer.innerHTML = `
+                <div class="error_container" style="grid-column: 1/-1; text-align: center; padding: 2rem;">
+                    <p>Oops! We're having trouble loading the shop catalog right now.</p>
+                </div>
+            `;
+        }
+    }
+
+    /**
+ * ฟังก์ชันสำหรับกรองข้อมูลสินค้าตามชื่อและหมวดหมู่
+ * @param {string} searchTerm - คำค้นหาจาก User (เช่น 'shirt', 'phone')
+ * @param {string} category - หมวดหมู่ที่เลือก (เช่น 'Electronics', 'All')
+ * @returns {Array} - Array ของสินค้าที่ผ่านการกรองแล้ว
+ */
+    function filterProducts(searchTerm, category) {
+        // แก้ไข: ตรวจสอบก่อนว่า searchTerm มีค่าและเป็น string ไหม 
+        // ถ้าไม่ใช่ (เช่น เป็น null หรือ undefined) ให้เปลี่ยนเป็น string ว่าง "" แทน
+        const safeSearchTerm = (typeof searchTerm === 'string') ? searchTerm : "";
+
+        // 1. ปรับเป็นตัวพิมพ์เล็ก (ตอนนี้จะไม่พังแล้วเพราะเรามั่นใจว่าเป็น string)
+        const normalizedSearch = safeSearchTerm.toLowerCase().trim();
+
+        return allProducts.filter(product => {
+            // ป้องกันกรณี product.title ไม่มีค่า (เผื่อข้อมูลในฐานข้อมูลมาไม่ครบ)
+            const title = product.title ? product.title.toLowerCase() : "";
+            const matchesTitle = title.includes(normalizedSearch);
+
+            const matchesCategory = (category === "") || (product.category === category);
+
+            return matchesTitle && matchesCategory;
+        });
+    }
+
+    const searchInput = document.querySelector('.search_input');
+    const categorySelect = document.querySelector('#category-filter');
+
+    function updateFilteredUI() {
+        const searchTerm = searchInput.value;
+        const selectedCategory = categorySelect.value;
+
+        const fillteredData = filterProducts(searchTerm, selectedCategory);
+
+        renderProducts(fillteredData);
+    }
+
+        /**
+     * ฟังก์ชัน Debounce สำหรับหน่วงเวลาการทำงาน
+     * @param {Function} func - ฟังก์ชันที่เราอยากให้รัน (เช่น การค้นหา)
+     * @param {number} delay - เวลาที่ต้องการรอ (มิลลิวินาที)
+     */
+    function debounce(func, delay) {
+        let timeoutId;
+        
+        return function (...args) {
+            // ถ้ามีนาฬิกาเดิมเดินอยู่ ให้ยกเลิกทิ้งทันที
+            if (timeoutId) {
+                clearTimeout(timeoutId);
+            }
+            
+            // เริ่มนับเวลาใหม่
+            timeoutId = setTimeout(() => {
+                func.apply(this, args);
+            }, delay);
+        };
+    }
+
+    const processSearch = debounce(() => {
+        const searchTerm = document.querySelector('.search-input').value;
+        const category = document.querySelector('#category-filter').value;
+        
+        console.log("กำลังค้นหาด้วยคำว่า:", searchTerm); // จะขึ้นเฉพาะตอนหยุดพิมพ์ 0.5 วิ
+        
+        const filtered = filterProducts(searchTerm, category);
+        renderProducts(filtered);
+    }, 500);
+
+    categorySelect.addEventListener('change', ()=> {
+        console.log("Category changed to:", categorySelect.value);
+        updateFilteredUI();
+    })
+
+    searchInput.addEventListener('input', ()=> {
+        updateFilteredUI();
+    })
+
+    // เรียกใช้งานเมื่อ DOM โหลดเสร็จ หรือ script ทำงาน
+    document.addEventListener('DOMContentLoaded', loadProducts);
+</script>
 
 
 <!-- catalog.html -->
