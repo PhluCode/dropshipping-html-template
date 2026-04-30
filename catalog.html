@@ -442,43 +442,10 @@
                                     </div>
                                     <div class="mini_cart_wrapper">
                                         <a href="javascript:void(0)"><img src="assets/img/shopping-bag.png" alt=""></a>
-                                        <span class="cart_quantity">2</span>
+                                        <span class="cart_quantity"></span>
                                         <!--mini cart-->
                                          <div class="mini_cart">
-                                            <div class="cart_item">
-                                               <div class="cart_img">
-                                                   <a href="#"><img src="assets/img/s-product/product.jpg" alt=""></a>
-                                               </div>
-                                                <div class="cart_info">
-                                                    <a href="#">Sit voluptatem rhoncus sem lectus</a>
-                                                    <p>Qty: 1 X <span> $60.00 </span></p>    
-                                                </div>
-                                                <div class="cart_remove">
-                                                    <a href="#"><i class="ion-android-close"></i></a>
-                                                </div>
-                                            </div>
-                                            <div class="cart_item">
-                                               <div class="cart_img">
-                                                   <a href="#"><img src="assets/img/s-product/product2.jpg" alt=""></a>
-                                               </div>
-                                                <div class="cart_info">
-                                                    <a href="#">Natus erro at congue massa commodo</a>
-                                                    <p>Qty: 1 X <span> $60.00 </span></p>   
-                                                </div>
-                                                <div class="cart_remove">
-                                                    <a href="#"><i class="ion-android-close"></i></a>
-                                                </div>
-                                            </div>
-                                            <div class="mini_cart_table">
-                                                <div class="cart_total">
-                                                    <span>Sub total:</span>
-                                                    <span class="price">$138.00</span>
-                                                </div>
-                                                <div class="cart_total mt-10">
-                                                    <span>total:</span>
-                                                    <span class="price">$138.00</span>
-                                                </div>
-                                            </div>
+                                            
 
                                             <div class="mini_cart_footer">
                                                <div class="cart_button">
@@ -720,8 +687,9 @@
 <script src="assets/js/main.js"></script>
 
 
-
 </body>
+
+<script src="js/cart.js"></script>
 
 <script>
     /**
@@ -783,12 +751,12 @@
                             <span class="price_original">$${product.original_price.toFixed(2)}</span>
                         </div>
                         <div class="product_actions">
-                            <a href="product-details.html?id=${product.id}" class="btn_add_cart">
+                            <button href="product-details.html?id=${product.id}" data-id=${product.id} data-price=${product.original_price.toFixed(2)} class="btn_add_cart">
                                 <i class="fa fa-shopping-cart"></i> Add
-                            </a>
-                            <a href="wishlist.html" class="btn_wishlist">
+                            </button>
+                            <button href="wishlist.html" class="btn_wishlist">
                                 <i class="fa fa-heart"></i>
-                            </a>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -849,36 +817,6 @@
         renderProducts(fillteredData);
     }
 
-        /**
-     * ฟังก์ชัน Debounce สำหรับหน่วงเวลาการทำงาน
-     * @param {Function} func - ฟังก์ชันที่เราอยากให้รัน (เช่น การค้นหา)
-     * @param {number} delay - เวลาที่ต้องการรอ (มิลลิวินาที)
-     */
-    function debounce(func, delay) {
-        let timeoutId;
-        
-        return function (...args) {
-            // ถ้ามีนาฬิกาเดิมเดินอยู่ ให้ยกเลิกทิ้งทันที
-            if (timeoutId) {
-                clearTimeout(timeoutId);
-            }
-            
-            // เริ่มนับเวลาใหม่
-            timeoutId = setTimeout(() => {
-                func.apply(this, args);
-            }, delay);
-        };
-    }
-
-    const processSearch = debounce(() => {
-        const searchTerm = document.querySelector('.search-input').value;
-        const category = document.querySelector('#category-filter').value;
-        
-        console.log("กำลังค้นหาด้วยคำว่า:", searchTerm); // จะขึ้นเฉพาะตอนหยุดพิมพ์ 0.5 วิ
-        
-        const filtered = filterProducts(searchTerm, category);
-        renderProducts(filtered);
-    }, 500);
 
     categorySelect.addEventListener('change', ()=> {
         console.log("Category changed to:", categorySelect.value);
@@ -889,8 +827,31 @@
         updateFilteredUI();
     })
 
-    // เรียกใช้งานเมื่อ DOM โหลดเสร็จ หรือ script ทำงาน
-    document.addEventListener('DOMContentLoaded', loadProducts);
+    const productGrid = document.querySelector('.product_grid');
+
+    productGrid.addEventListener('click', (event) => {
+        const btn = event.target.closest('.btn_add_cart');
+        if (!btn) return;
+
+        const productId = Number(btn.getAttribute('data-id')); 
+        const price = parseFloat(btn.getAttribute('data-price'));
+
+        // เรียกใช้ฟังก์ชันจาก cart.js 
+        // *ต้องส่ง allProducts เข้าไปด้วย เพราะ cart.js ไม่เห็นตัวแปรนี้*
+        addToCart(productId, price, allProducts); 
+    });
+
+    // ใน catalog.html ตรงส่วนล่างสุดของ <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // 1. โหลดสินค้าหลัก
+        if (typeof loadProducts === 'function') loadProducts();
+        
+        // 2. บังคับให้ Mini Cart แสดงผลจากข้อมูลใน LocalStorage ทันที
+        if (typeof updateCartUI === 'function') {
+            updateCartUI(); 
+        }
+    });
+    
 </script>
 
 
