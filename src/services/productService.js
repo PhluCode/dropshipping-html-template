@@ -4,12 +4,17 @@ const path = require('path');
 const dbPath = path.join(__dirname, '../../ecommerce.db');
 const db = new sqlite3.Database(dbPath);
 
-const getAllProducts = () => {
+const getProducts = (category) => {
   return new Promise((resolve, reject) => {
-    // ดึงข้อมูลทั้งหมดจาก table products
-    const query = "SELECT * FROM products";
+    let query = "SELECT * FROM products";
+    let params = [];
     
-    db.all(query, [], (err, rows) => {
+    if (category) {
+      query += " WHERE category = ?";
+      params = [category];
+    }
+    
+    db.all(query, params, (err, rows) => {
       if (err) {
         reject(err);
       } else {
@@ -19,4 +24,4 @@ const getAllProducts = () => {
   });
 };
 
-module.exports = { getAllProducts };
+module.exports = { getProducts };

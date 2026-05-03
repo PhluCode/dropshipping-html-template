@@ -2,7 +2,8 @@ const productService = require('../services/productService');
 
 const getProducts = async (req, res) => {
   try {
-    const products = await productService.getAllProducts();
+    const { category } = req.query;
+    const products = await productService.getProducts(category);
     // 4. ต้องมั่นใจว่ามีบรรทัดนี้เพื่อส่งข้อมูลกลับเป็น JSON
     res.json(products); 
   } catch (error) {
