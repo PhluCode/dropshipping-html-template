@@ -1,0 +1,62 @@
+[
+    {
+        "username": "james.smith@example.com",
+        "password_hash": "10487c8581423e8b2fbeed2b21c2cc53",
+        "first_name": "James",
+        "registration_date": "2023-10-24"
+    },
+    {
+        "username": "mary.johnson@example.com",
+        "password_hash": "d3a173a69f35e2f26c4a2b8ae6d74317",
+        "first_name": "Mary",
+        "registration_date": "2023-02-10"
+    },
+    {
+        "username": "robert.williams@example.com",
+        "password_hash": "1ef6357213c87ba2420d0b4d2399ceac",
+        "first_name": "Robert",
+        "registration_date": "2023-03-24"
+    },
+    {
+        "username": "patricia.brown@example.com",
+        "password_hash": "db617046312b0f01636b16212c7382f3",
+        "first_name": "Patricia",
+        "registration_date": "2023-01-13"
+    },
+    {
+        "username": "john.jones@example.com",
+        "password_hash": "8cc0b139481419e6d24065c873a364b1",
+        "first_name": "John",
+        "registration_date": "2023-10-29"
+    },
+    {
+        "username": "jennifer.garcia@example.com",
+        "password_hash": "3b4e1400e8341cf2609838bae47d3e9d",
+        "first_name": "Jennifer",
+        "registration_date": "2023-03-01"
+    },
+    {
+        "username": "michael.miller@example.com",
+        "password_hash": "bbd5979f83474a7615156e4588d1afe4",
+        "first_name": "Michael",
+        "registration_date": "2023-12-13"
+    },
+    {
+        "username": "linda.davis@example.com",
+        "password_hash": "db1f5f21754651e31b733f510d8fd2b4",
+        "first_name": "Linda",
+        "registration_date": "2023-04-11"
+    },
+    {
+        "username": "william.rodriguez@example.com",
+        "password_hash": "f45eb4b5f0c9e0f32041548b5a831366",
+        "first_name": "William",
+        "registration_date": "2023-09-18"
+    },
+    {
+        "username": "elizabeth.martinez@example.com",
+        "password_hash": "b15816f33510f0e3a521531c1a1047fb",
+        "first_name": "Elizabeth",
+        "registration_date": "2023-09-26"
+    }
+]

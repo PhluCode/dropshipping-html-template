@@ -1,7 +1,7 @@
 const sqlite3 = require('sqlite3').verbose();
 const path = require('path');
-// ชี้ไปที่ไฟล์ database ที่เราพึ่ง migrate ข้อมูลลงไป
-const dbPath = path.join(__dirname, '../../ecommerce.db');
+// ชี้ไปที่ไฟล์ database ที่อยู่ใน src/data
+const dbPath = path.resolve(__dirname, '../data/ecommerce.db');
 const db = new sqlite3.Database(dbPath);
 
 const getProducts = (category) => {

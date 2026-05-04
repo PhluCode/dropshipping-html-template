@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const productRoutes = require('./routes/products');
+const authRoutes = require('./routes/auth');
 
 const app = express();
 
@@ -8,6 +9,7 @@ app.use(express.json());
 
 // 1. API Routes (เรียกจาก Frontend ผ่าน /api/products)
 app.use('/api/products', productRoutes);
+app.use('/api/auth', authRoutes);
 
 // 2. วิธีแก้ Cannot GET / : 
 // ต้องใช้ path.join และ .. เพื่อถอยออกจาก src ไปหา root directory
