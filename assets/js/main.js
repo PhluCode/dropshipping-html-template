@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                     `<span class="original-price text-muted ms-2"><del>$${product.original_price.toFixed(2)}</del></span>` 
                                     : ''}
                             </div>
-                            <button class="btn btn-outline-dark btn-sm mt-2 w-100" onclick="addToCart(${product.id})">
+                            <button class="btn btn-outline-dark btn-sm mt-2 w-100" onclick="addToCart(${product.id}, ${product.current_price})">
                                 Add to Cart
                             </button>
                         </div>

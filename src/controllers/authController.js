@@ -1,4 +1,24 @@
 const authService = require('../services/authService');
+const jwt = require('jsonwebtoken');
+
+const JWT_SECRET = process.env.JWT_SECRET || 'your_dev_secret_key';
+
+const authenticateToken = (req, res, next) => {
+    const authHeader = req.headers['authorization'];
+    const token = authHeader && authHeader.split(' ')[1];
+
+    if (!token) {
+        return res.status(401).json({ message: 'Access token required.' });
+    }
+
+    jwt.verify(token, JWT_SECRET, (err, user) => {
+        if (err) {
+            return res.status(403).json({ message: 'Invalid token.' });
+        }
+        req.user = user;
+        next();
+    });
+};
 
 const login = async (req, res) => {
     const { email, password } = req.body;
@@ -45,4 +65,4 @@ const register = async (req, res) => {
     }
 };
 
-module.exports = { login, register };
+module.exports = { login, register, authenticateToken };
