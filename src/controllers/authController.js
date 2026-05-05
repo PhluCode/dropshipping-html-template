@@ -45,22 +45,34 @@ const login = async (req, res) => {
     }
 };
 
+// Controller
 const register = async (req, res) => {
     const { first_name, email, password } = req.body;
 
+    // 1. Validation เบื้องต้น
     if (!first_name || !email || !password) {
         return res.status(400).json({ message: 'First name, email and password are required.' });
     }
 
+    // 2. ตรวจสอบเงื่อนไขรหัสผ่าน (เพิ่มความปลอดภัยอีกชั้นจาก Backend)
+    const pwdRegex = /^(?=.*[A-Z])(?=.*[!@#$%^&*])(?=.{8,})/;
+    if (!pwdRegex.test(password)) {
+        return res.status(400).json({ message: 'Password does not meet security requirements.' });
+    }
+
     try {
         const result = await authService.registerUser({ email, password, first_name });
+        
         if (!result.success) {
             return res.status(400).json({ message: result.message });
         }
 
-        return res.status(201).json({ message: 'Registration successful. Please login.' });
+        return res.status(201).json({ 
+            message: 'Registration successful. Please login.',
+            userId: result.userId 
+        });
     } catch (error) {
-        console.error(error);
+        console.error("Registration Error:", error);
         res.status(500).json({ message: 'Internal server error.' });
     }
 };

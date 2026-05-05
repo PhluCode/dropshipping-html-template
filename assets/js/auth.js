@@ -130,15 +130,17 @@ const handleRegisterForm = () => {
         const email = document.getElementById('registerEmail').value.trim();
         const password = document.getElementById('registerPassword').value.trim();
 
+        const pwdRegex = /^(?=.*[A-Z])(?=.*[!@#$%^&*])(?=.{8,})/;
+
         if (!first_name || !email || !password) {
             displayFeedback('registerFeedback', 'Please fill all fields.');
             return;
         }
 
-        if (password.length < 6) {
-            displayFeedback('registerFeedback', 'Password must be at least 6 characters.');
-            return;
-        }
+        if (!pwdRegex.test(password)) {
+                msg.innerText = "รหัสผ่านต้องมี 8 ตัวขึ้นไป, มีตัวพิมพ์ใหญ่ 1 และอักษรพิเศษ 1 ตัว";
+                return;
+            }
 
         try {
             const response = await fetch('/api/auth/register', {
