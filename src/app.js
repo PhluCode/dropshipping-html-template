@@ -11,7 +11,7 @@ app.use(express.json());
 // 1. API Routes (เรียกจาก Frontend ผ่าน /api/products)
 app.use('/api/products', productRoutes);
 app.use('/api/auth', authRoutes);
-app.use('/api', checkoutRoutes);
+app.use('/api/checkout', checkoutRoutes);
 
 // 2. วิธีแก้ Cannot GET / : 
 // ต้องใช้ path.join และ .. เพื่อถอยออกจาก src ไปหา root directory
