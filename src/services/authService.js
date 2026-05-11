@@ -1,11 +1,7 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const sqlite3 = require('sqlite3').verbose();
-const path = require('path');
+const db = require('../db');
 const crypto = require('crypto');
-
-const dbPath = path.resolve(__dirname, '../data/ecommerce.db');
-const db = new sqlite3.Database(dbPath);
 
 const JWT_SECRET = process.env.JWT_SECRET || 'your_dev_secret_key';
 

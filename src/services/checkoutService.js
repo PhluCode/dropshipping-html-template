@@ -1,8 +1,4 @@
-const path = require('path');
-const sqlite3 = require('sqlite3').verbose();
-
-const dbPath = path.resolve(__dirname, '../data/ecommerce.db');
-const db = new sqlite3.Database(dbPath);
+const db = require('../db');
 
 const ensureOrdersTable = () => {
     db.run(`CREATE TABLE IF NOT EXISTS orders (
